@@ -31,8 +31,8 @@ const Invoice = () => {
     return (
         <div className='bg-white  rounded-md  text-black'>
             <div className='w-full my-5 bg-white  rounded-md  text-black' ref={pdfRef}>
-                <div className=' flex justify-around pt-10'>
-                    <div className=' flex gap-2'>
+                <div className=' flex  justify-around pt-10'>
+                  {selectImage && <div className=' flex gap-2 '>
                         {selectImage && (
                             <div>
                                 <img
@@ -45,18 +45,23 @@ const Invoice = () => {
                                 <button onClick={() => setSelectedImage(null)}>Remove</button>
                             </div>
                         )}
-                        {!selectImage && <input
+                        
+                    </div>}
+                    {!selectImage && <input
                             type="file"
                             name="file-input"
-                            className=' '
+                            id='file-input'
+                            className='hidden'
                             onChange={(event) => {
                                 //   console.log(event.target.files[0]);
                                 setSelectedImage(event.target.files[0]);
                             }}
                         />
                         }
-                    </div>
-                    {/* <label id="file-input-label" for="file-input">Drag your Logo here or Upload file here</label> */}
+                    {!selectImage && 
+                    <label id="file-input-label" for="file-input" className='w-[15vw] px-[2vw] py-3 bg-[#c4eef8] text-center rounded-md border-2 border-dashed border-black ' >Drag your Logo <span className="text-yellow-600"> here, </span> or Upload file here 
+                    </label>
+                    }
                     <div className=' text-3xl font-bold'>Invoice</div>
                     <input type='text' placeholder='This is invoice no' className=' outline-none border-2 border-gray-300 px-2 h-10 text-black  rounded-md w-[200px] ' />
                 </div>
@@ -65,7 +70,7 @@ const Invoice = () => {
                 <div className='flex justify-between w-full mt-10 '>
 
                     <div className='w-[50%] pl-10 flex flex-col gap-4'>
-                        <div>
+                        <div >
                             <label for="DateIssued" className=' font-bold'>Date Issued:</label>
                             <input type="date" id="DateIssued" name="DateIssued" className='ml-4 outline-none border-2 border-gray-300 px-2   rounded-md w-[200px] py-1' />
                         </div>
@@ -111,8 +116,8 @@ const Invoice = () => {
                     
                     <textarea id="notes" name="notes" rows="4" cols="50"
                      className='w-full   px-2 border   outline-none border-gray-300 mt-3'
+                     placeholder='Add notes or terms and Conditions'
                     >
-                    Add notes or terms and Conditions
                    </textarea>
                 </div>
 
